@@ -2,17 +2,61 @@
   "id": "xhs-insights-openclaw-plugin",
   "name": "XHS Insights MCP for OpenClaw",
   "description": "OpenClaw native plugin shim for the hosted read-only XHS Insights MCP service.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "providers": ["xhs-insights"],
   "providerAuthEnvVars": {
     "xhs-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]
   },
+  "providerAuthChoices": [
+    {
+      "provider": "xhs-insights",
+      "method": "api-key",
+      "choiceId": "social-media-mcp-api-key",
+      "choiceLabel": "Social Media MCP API Key",
+      "choiceHint": "Used only to authorize requests to the hosted XHS Insights MCP service.",
+      "groupId": "social-media-insights",
+      "groupLabel": "Social Media Insights",
+      "optionKey": "socialMediaMcpApiKey",
+      "cliFlag": "--social-media-mcp-api-key",
+      "cliOption": "--social-media-mcp-api-key <key>",
+      "cliDescription": "SOCIAL_MEDIA_MCP_API_KEY used by the hosted MCP service.",
+      "onboardingScopes": ["social-media-research"],
+      "assistantPriority": 0
+    }
+  ],
   "activation": {
     "onStartup": false,
     "onCapabilities": ["tool"]
   },
-  "setup": {
-    "requiresRuntime": false
+  "runtimeRequirements": {
+    "bins": ["node"],
+    "env": ["SOCIAL_MEDIA_MCP_API_KEY"],
+    "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+    "networkTargets": ["https://mcp.52choujiang.com"]
+  },
+  "metadata": {
+    "xhs-insights": {
+      "requires": {
+        "bins": ["node"],
+        "env": ["SOCIAL_MEDIA_MCP_API_KEY"]
+      },
+      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "networkTargets": ["https://mcp.52choujiang.com"]
+    }
+  },
+  "requires": {
+    "bins": ["node"],
+    "env": ["SOCIAL_MEDIA_MCP_API_KEY"]
+  },
+  "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+  "networkTargets": ["https://mcp.52choujiang.com"],
+  "environment": {
+    "binaries": ["node"],
+    "externalServices": [
+      {
+        "name": "mcp.52choujiang.com"
+      }
+    ]
   },
   "contracts": {
     "tools": [
@@ -50,6 +94,38 @@
         "maximum": 120000,
         "description": "Timeout in milliseconds for remote MCP HTTP requests."
       }
+    }
+  },
+  "configUiHints": {
+    "apiKeyEnv": {
+      "label": "API Key environment variable",
+      "help": "Name of the environment variable that stores the Social Media MCP API Key.",
+      "sensitive": false
+    },
+    "endpointUrl": {
+      "label": "Endpoint URL",
+      "help": "Hosted XHS Insights MCP endpoint."
+    },
+    "connectionTimeoutMs": {
+      "label": "Connection timeout",
+      "help": "Timeout in milliseconds for hosted MCP requests.",
+      "advanced": true
+    }
+  },
+  "uiHints": {
+    "apiKeyEnv": {
+      "label": "API Key environment variable",
+      "help": "Name of the environment variable that stores the Social Media MCP API Key.",
+      "sensitive": false
+    },
+    "endpointUrl": {
+      "label": "Endpoint URL",
+      "help": "Hosted XHS Insights MCP endpoint."
+    },
+    "connectionTimeoutMs": {
+      "label": "Connection timeout",
+      "help": "Timeout in milliseconds for hosted MCP requests.",
+      "advanced": true
     }
   }
 }

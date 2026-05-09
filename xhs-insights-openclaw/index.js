@@ -1,6 +1,6 @@
 const PLUGIN_ID = "xhs-insights-openclaw-plugin";
 const PLUGIN_NAME = "XHS Insights MCP for OpenClaw";
-const PLUGIN_VERSION = "0.1.7";
+const PLUGIN_VERSION = "0.1.8";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/xhs/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;

@@ -8,7 +8,7 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
 - Package name: `xhs-insights-openclaw-plugin`
-- Version: `0.1.7`
+- Version: `0.1.8`
 
 ## Capabilities
 
@@ -29,6 +29,7 @@ This package uses the native OpenClaw plugin path:
 - `openclaw.plugin.json` declares the native plugin manifest and tool contracts.
 - `package.json` declares the OpenClaw extension entry and MCP SDK dependency.
 - `index.js` registers thin forwarding tools that call the hosted MCP service.
+- Runtime metadata declares the required `node` binary, `SOCIAL_MEDIA_MCP_API_KEY`, and the hosted MCP service domain.
 
 It intentionally does not include `.codex-plugin/` or `.mcp.json`, because OpenClaw gives `openclaw.plugin.json` native-plugin precedence when both marker types are present.
 
@@ -67,7 +68,7 @@ clawhub package publish xhs-insights-openclaw \
   --family code-plugin \
   --name xhs-insights-openclaw-plugin \
   --display-name "XHS Insights MCP for OpenClaw" \
-  --version 0.1.7 \
+  --version 0.1.8 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
   --source-path xhs-insights-openclaw \

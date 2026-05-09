@@ -1,6 +1,6 @@
 {
   "name": "xhs-insights-openclaw-plugin",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "OpenClaw native plugin shim for the hosted read-only XHS Insights MCP service.",
   "main": "index.js",
   "type": "module",
@@ -35,6 +35,84 @@
     },
     "build": {
       "openclawVersion": "2026.5.9"
+    },
+    "runtimeRequirements": {
+      "bins": [
+        "node"
+      ],
+      "env": [
+        "SOCIAL_MEDIA_MCP_API_KEY"
+      ],
+      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "networkTargets": [
+        "https://mcp.52choujiang.com"
+      ]
+    },
+    "environment": {
+      "binaries": [
+        "node"
+      ],
+      "externalServices": [
+        {
+          "name": "mcp.52choujiang.com"
+        }
+      ]
+    },
+    "configUiHints": {
+      "apiKeyEnv": {
+        "label": "API Key environment variable",
+        "help": "Name of the environment variable that stores the Social Media MCP API Key.",
+        "sensitive": false
+      },
+      "endpointUrl": {
+        "label": "Endpoint URL",
+        "help": "Hosted XHS Insights MCP endpoint."
+      },
+      "connectionTimeoutMs": {
+        "label": "Connection timeout",
+        "help": "Timeout in milliseconds for hosted MCP requests.",
+        "advanced": true
+      }
+    }
+  },
+  "runtimeRequirements": {
+    "bins": [
+      "node"
+    ],
+    "env": [
+      "SOCIAL_MEDIA_MCP_API_KEY"
+    ],
+    "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+    "networkTargets": [
+      "https://mcp.52choujiang.com"
+    ]
+  },
+  "requires": {
+    "bins": [
+      "node"
+    ],
+    "env": [
+      "SOCIAL_MEDIA_MCP_API_KEY"
+    ]
+  },
+  "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+  "networkTargets": [
+    "https://mcp.52choujiang.com"
+  ],
+  "metadata": {
+    "xhs-insights": {
+      "requires": {
+        "bins": [
+          "node"
+        ],
+        "env": [
+          "SOCIAL_MEDIA_MCP_API_KEY"
+        ]
+      },
+      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "networkTargets": [
+        "https://mcp.52choujiang.com"
+      ]
     }
   },
   "dependencies": {

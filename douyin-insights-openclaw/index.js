@@ -1,6 +1,6 @@
 const PLUGIN_ID = "douyin-insights-openclaw-plugin";
 const PLUGIN_NAME = "Douyin Insights MCP for OpenClaw";
-const PLUGIN_VERSION = "0.1.2";
+const PLUGIN_VERSION = "0.1.3";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/douyin/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;

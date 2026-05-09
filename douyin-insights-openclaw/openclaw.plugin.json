@@ -2,17 +2,61 @@
   "id": "douyin-insights-openclaw-plugin",
   "name": "Douyin Insights MCP for OpenClaw",
   "description": "OpenClaw native plugin shim for the hosted read-only Douyin Insights MCP service.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "providers": ["douyin-insights"],
   "providerAuthEnvVars": {
     "douyin-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]
   },
+  "providerAuthChoices": [
+    {
+      "provider": "douyin-insights",
+      "method": "api-key",
+      "choiceId": "social-media-mcp-api-key",
+      "choiceLabel": "Social Media MCP API Key",
+      "choiceHint": "Used only to authorize requests to the hosted Douyin Insights MCP service.",
+      "groupId": "social-media-insights",
+      "groupLabel": "Social Media Insights",
+      "optionKey": "socialMediaMcpApiKey",
+      "cliFlag": "--social-media-mcp-api-key",
+      "cliOption": "--social-media-mcp-api-key <key>",
+      "cliDescription": "SOCIAL_MEDIA_MCP_API_KEY used by the hosted MCP service.",
+      "onboardingScopes": ["social-media-research"],
+      "assistantPriority": 0
+    }
+  ],
   "activation": {
     "onStartup": false,
     "onCapabilities": ["tool"]
   },
-  "setup": {
-    "requiresRuntime": false
+  "runtimeRequirements": {
+    "bins": ["node"],
+    "env": ["SOCIAL_MEDIA_MCP_API_KEY"],
+    "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+    "networkTargets": ["https://mcp.52choujiang.com"]
+  },
+  "metadata": {
+    "douyin-insights": {
+      "requires": {
+        "bins": ["node"],
+        "env": ["SOCIAL_MEDIA_MCP_API_KEY"]
+      },
+      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "networkTargets": ["https://mcp.52choujiang.com"]
+    }
+  },
+  "requires": {
+    "bins": ["node"],
+    "env": ["SOCIAL_MEDIA_MCP_API_KEY"]
+  },
+  "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+  "networkTargets": ["https://mcp.52choujiang.com"],
+  "environment": {
+    "binaries": ["node"],
+    "externalServices": [
+      {
+        "name": "mcp.52choujiang.com"
+      }
+    ]
   },
   "contracts": {
     "tools": [
@@ -49,6 +93,38 @@
         "maximum": 120000,
         "description": "Timeout in milliseconds for remote MCP HTTP requests."
       }
+    }
+  },
+  "configUiHints": {
+    "apiKeyEnv": {
+      "label": "API Key environment variable",
+      "help": "Name of the environment variable that stores the Social Media MCP API Key.",
+      "sensitive": false
+    },
+    "endpointUrl": {
+      "label": "Endpoint URL",
+      "help": "Hosted Douyin Insights MCP endpoint."
+    },
+    "connectionTimeoutMs": {
+      "label": "Connection timeout",
+      "help": "Timeout in milliseconds for hosted MCP requests.",
+      "advanced": true
+    }
+  },
+  "uiHints": {
+    "apiKeyEnv": {
+      "label": "API Key environment variable",
+      "help": "Name of the environment variable that stores the Social Media MCP API Key.",
+      "sensitive": false
+    },
+    "endpointUrl": {
+      "label": "Endpoint URL",
+      "help": "Hosted Douyin Insights MCP endpoint."
+    },
+    "connectionTimeoutMs": {
+      "label": "Connection timeout",
+      "help": "Timeout in milliseconds for hosted MCP requests.",
+      "advanced": true
     }
   }
 }
