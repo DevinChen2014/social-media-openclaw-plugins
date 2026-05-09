@@ -2,7 +2,7 @@
   "id": "xhs-insights-openclaw-plugin",
   "name": "XHS Insights MCP for OpenClaw",
   "description": "OpenClaw native plugin shim for the hosted read-only XHS Insights MCP service.",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "providers": ["xhs-insights"],
   "providerAuthEnvVars": {
     "xhs-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]

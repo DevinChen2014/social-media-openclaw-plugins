@@ -1,6 +1,6 @@
 {
   "name": "douyin-insights-openclaw-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "OpenClaw native plugin shim for the hosted read-only Douyin Insights MCP service.",
   "main": "index.js",
   "type": "module",
