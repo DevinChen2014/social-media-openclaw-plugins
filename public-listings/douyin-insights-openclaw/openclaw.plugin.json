@@ -1,0 +1,54 @@
+{
+  "id": "douyin-insights-openclaw",
+  "name": "Douyin Insights MCP for OpenClaw",
+  "description": "OpenClaw native plugin shim for the hosted read-only Douyin Insights MCP service.",
+  "version": "0.1.1",
+  "providers": ["douyin-insights"],
+  "providerAuthEnvVars": {
+    "douyin-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]
+  },
+  "activation": {
+    "onStartup": false,
+    "onCapabilities": ["tool"]
+  },
+  "setup": {
+    "requiresRuntime": false
+  },
+  "contracts": {
+    "tools": [
+      "douyin-insights__douyin_search_videos",
+      "douyin-insights__douyin_get_video_detail_by_aweme_id",
+      "douyin-insights__douyin_get_video_detail_by_url",
+      "douyin-insights__douyin_get_video_comments_by_aweme_id",
+      "douyin-insights__douyin_get_video_comments_by_url",
+      "douyin-insights__douyin_get_user_info_by_sec_user_id",
+      "douyin-insights__douyin_get_user_info_by_url",
+      "douyin-insights__douyin_get_user_posted_videos_by_sec_user_id",
+      "douyin-insights__douyin_get_user_posted_videos_by_url"
+    ]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiKeyEnv": {
+        "type": "string",
+        "default": "SOCIAL_MEDIA_MCP_API_KEY",
+        "description": "Environment variable that contains the API Key used as a Bearer token."
+      },
+      "endpointUrl": {
+        "type": "string",
+        "format": "uri",
+        "default": "https://mcp.52choujiang.com/douyin/mcp",
+        "description": "Remote streamable-http MCP endpoint URL."
+      },
+      "connectionTimeoutMs": {
+        "type": "integer",
+        "default": 30000,
+        "minimum": 1000,
+        "maximum": 120000,
+        "description": "Timeout in milliseconds for remote MCP HTTP requests."
+      }
+    }
+  }
+}
