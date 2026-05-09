@@ -7,7 +7,7 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - Endpoint: `https://mcp.52choujiang.com/xhs/mcp`
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
-- Package name: `xhs-insights-openclaw`
+- Package name: `xhs-insights-openclaw-plugin`
 - Version: `0.1.6`
 
 ## Capabilities
@@ -65,7 +65,7 @@ source ~/.nvm/nvm.sh
 nvm use 24.13.0
 clawhub package publish public-listings/xhs-insights-openclaw \
   --family code-plugin \
-  --name xhs-insights-openclaw \
+  --name xhs-insights-openclaw-plugin \
   --display-name "XHS Insights MCP for OpenClaw" \
   --version 0.1.6 \
   --source-repo <public-owner/public-repo> \

@@ -1,5 +1,5 @@
 {
-  "id": "douyin-insights-openclaw",
+  "id": "douyin-insights-openclaw-plugin",
   "name": "Douyin Insights MCP for OpenClaw",
   "description": "OpenClaw native plugin shim for the hosted read-only Douyin Insights MCP service.",
   "version": "0.1.1",

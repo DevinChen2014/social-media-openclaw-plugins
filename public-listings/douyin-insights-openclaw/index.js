@@ -1,4 +1,4 @@
-const PLUGIN_ID = "douyin-insights-openclaw";
+const PLUGIN_ID = "douyin-insights-openclaw-plugin";
 const PLUGIN_NAME = "Douyin Insights MCP for OpenClaw";
 const PLUGIN_VERSION = "0.1.1";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/douyin/mcp";

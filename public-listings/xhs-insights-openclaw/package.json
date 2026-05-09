@@ -1,5 +1,5 @@
 {
-  "name": "xhs-insights-openclaw",
+  "name": "xhs-insights-openclaw-plugin",
   "version": "0.1.6",
   "description": "OpenClaw native plugin shim for the hosted read-only XHS Insights MCP service.",
   "main": "index.js",

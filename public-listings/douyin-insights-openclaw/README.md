@@ -7,7 +7,7 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - Endpoint: `https://mcp.52choujiang.com/douyin/mcp`
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
-- Package name: `douyin-insights-openclaw`
+- Package name: `douyin-insights-openclaw-plugin`
 - Version: `0.1.1`
 
 ## Capabilities
@@ -65,7 +65,7 @@ source ~/.nvm/nvm.sh
 nvm use 24.13.0
 clawhub package publish public-listings/douyin-insights-openclaw \
   --family code-plugin \
-  --name douyin-insights-openclaw \
+  --name douyin-insights-openclaw-plugin \
   --display-name "Douyin Insights MCP for OpenClaw" \
   --version 0.1.1 \
   --source-repo <public-owner/public-repo> \

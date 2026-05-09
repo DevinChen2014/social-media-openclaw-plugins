@@ -1,4 +1,4 @@
-const PLUGIN_ID = "xhs-insights-openclaw";
+const PLUGIN_ID = "xhs-insights-openclaw-plugin";
 const PLUGIN_NAME = "XHS Insights MCP for OpenClaw";
 const PLUGIN_VERSION = "0.1.6";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/xhs/mcp";
