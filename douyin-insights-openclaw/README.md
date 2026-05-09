@@ -63,14 +63,14 @@ Use ClawHub dry-run before publishing:
 ```bash
 source ~/.nvm/nvm.sh
 nvm use 24.13.0
-clawhub package publish public-listings/douyin-insights-openclaw \
+clawhub package publish douyin-insights-openclaw \
   --family code-plugin \
   --name douyin-insights-openclaw-plugin \
   --display-name "Douyin Insights MCP for OpenClaw" \
   --version 0.1.1 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
-  --source-path public-listings/douyin-insights-openclaw \
+  --source-path douyin-insights-openclaw \
   --dry-run \
   --json
 ```

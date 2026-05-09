@@ -63,14 +63,14 @@ Use ClawHub dry-run before publishing:
 ```bash
 source ~/.nvm/nvm.sh
 nvm use 24.13.0
-clawhub package publish public-listings/xhs-insights-openclaw \
+clawhub package publish xhs-insights-openclaw \
   --family code-plugin \
   --name xhs-insights-openclaw-plugin \
   --display-name "XHS Insights MCP for OpenClaw" \
   --version 0.1.6 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
-  --source-path public-listings/xhs-insights-openclaw \
+  --source-path xhs-insights-openclaw \
   --dry-run \
   --json
 ```
