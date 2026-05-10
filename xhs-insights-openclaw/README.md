@@ -1,4 +1,4 @@
-# XHS Insights MCP for OpenClaw
+# Xiaohongshu RedNote XHS Insights MCP
 
 This directory contains an OpenClaw native plugin shim for the hosted XHS Insights MCP service.
 
@@ -8,7 +8,8 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
 - Package name: `xhs-insights-openclaw-plugin`
-- Version: `0.1.8`
+- Version: `0.1.9`
+- Search terms: Xiaohongshu, XHS, RedNote, 小红书, comments, creator profiles, social media research
 
 ## Capabilities
 
@@ -67,8 +68,8 @@ nvm use 24.13.0
 clawhub package publish xhs-insights-openclaw \
   --family code-plugin \
   --name xhs-insights-openclaw-plugin \
-  --display-name "XHS Insights MCP for OpenClaw" \
-  --version 0.1.8 \
+  --display-name "Xiaohongshu RedNote XHS Insights MCP" \
+  --version 0.1.9 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
   --source-path xhs-insights-openclaw \

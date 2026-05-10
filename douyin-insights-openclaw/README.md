@@ -1,4 +1,4 @@
-# Douyin Insights MCP for OpenClaw
+# Douyin 抖音 Video Insights MCP
 
 This directory contains an OpenClaw native plugin shim for the hosted Douyin Insights MCP service.
 
@@ -8,7 +8,8 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
 - Package name: `douyin-insights-openclaw-plugin`
-- Version: `0.1.3`
+- Version: `0.1.4`
+- Search terms: Douyin, 抖音, videos, comments, creator profiles, short video research
 
 ## Capabilities
 
@@ -67,8 +68,8 @@ nvm use 24.13.0
 clawhub package publish douyin-insights-openclaw \
   --family code-plugin \
   --name douyin-insights-openclaw-plugin \
-  --display-name "Douyin Insights MCP for OpenClaw" \
-  --version 0.1.3 \
+  --display-name "Douyin 抖音 Video Insights MCP" \
+  --version 0.1.4 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
   --source-path douyin-insights-openclaw \

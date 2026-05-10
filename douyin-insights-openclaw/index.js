@@ -1,6 +1,6 @@
 const PLUGIN_ID = "douyin-insights-openclaw-plugin";
-const PLUGIN_NAME = "Douyin Insights MCP for OpenClaw";
-const PLUGIN_VERSION = "0.1.3";
+const PLUGIN_NAME = "Douyin 抖音 Video Insights MCP";
+const PLUGIN_VERSION = "0.1.4";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/douyin/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;
@@ -384,7 +384,7 @@ function extractTextContent(content) {
 export default {
   id: PLUGIN_ID,
   name: PLUGIN_NAME,
-  description: "OpenClaw native plugin shim for the hosted read-only Douyin Insights MCP service.",
+  description: "Search Douyin and 抖音 videos; read video details, comments, creator profiles, and creator video lists through a hosted read-only MCP service.",
   configSchema: CONFIG_SCHEMA,
   register,
 };

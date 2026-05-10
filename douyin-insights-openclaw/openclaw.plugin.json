@@ -1,8 +1,8 @@
 {
   "id": "douyin-insights-openclaw-plugin",
-  "name": "Douyin Insights MCP for OpenClaw",
-  "description": "OpenClaw native plugin shim for the hosted read-only Douyin Insights MCP service.",
-  "version": "0.1.3",
+  "name": "Douyin 抖音 Video Insights MCP",
+  "description": "Search Douyin and 抖音 videos; read video details, comments, creator profiles, and creator video lists through a hosted read-only MCP service.",
+  "version": "0.1.4",
   "providers": ["douyin-insights"],
   "providerAuthEnvVars": {
     "douyin-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]
