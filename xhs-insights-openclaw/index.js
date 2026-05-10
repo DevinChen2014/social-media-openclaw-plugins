@@ -1,6 +1,6 @@
 const PLUGIN_ID = "xhs-insights-openclaw-plugin";
 const PLUGIN_NAME = "Xiaohongshu RedNote XHS Insights MCP";
-const PLUGIN_VERSION = "0.1.10";
+const PLUGIN_VERSION = "0.1.11";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/xhs/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;
@@ -9,17 +9,6 @@ const CONFIG_SCHEMA = {
   type: "object",
   additionalProperties: false,
   properties: {
-    apiKeyEnv: {
-      type: "string",
-      default: DEFAULT_API_KEY_ENV,
-      description: "Environment variable that contains the API Key used as a Bearer token.",
-    },
-    endpointUrl: {
-      type: "string",
-      format: "uri",
-      default: DEFAULT_ENDPOINT_URL,
-      description: "Remote streamable-http MCP endpoint URL.",
-    },
     connectionTimeoutMs: {
       type: "integer",
       default: DEFAULT_CONNECTION_TIMEOUT_MS,
@@ -282,9 +271,9 @@ function createForwardingTool({ api, context, definition }) {
 
 async function callRemoteMcpTool({ api, remoteName, publicName, args }) {
   const config = resolvePluginConfig(api);
-  const apiKey = process.env[config.apiKeyEnv];
+  const apiKey = process.env[DEFAULT_API_KEY_ENV];
   if (!apiKey) {
-    throw new Error(`Missing API Key. Set ${config.apiKeyEnv} before using ${PLUGIN_NAME}.`);
+    throw new Error(`Missing API Key. Set ${DEFAULT_API_KEY_ENV} before using ${PLUGIN_NAME}.`);
   }
 
   const { Client, StreamableHTTPClientTransport } = await loadMcpSdkModules();
@@ -301,7 +290,7 @@ async function callRemoteMcpTool({ api, remoteName, publicName, args }) {
   if (signal) {
     requestInit.signal = signal;
   }
-  const transport = new StreamableHTTPClientTransport(new URL(config.endpointUrl), {
+  const transport = new StreamableHTTPClientTransport(new URL(DEFAULT_ENDPOINT_URL), {
     requestInit,
   });
 
@@ -338,14 +327,8 @@ function resolvePluginConfig(api) {
     api.pluginConfig ??
     {};
   return {
-    apiKeyEnv: normalizeNonEmptyString(configured.apiKeyEnv, DEFAULT_API_KEY_ENV),
-    endpointUrl: normalizeNonEmptyString(configured.endpointUrl, DEFAULT_ENDPOINT_URL),
     connectionTimeoutMs: normalizeTimeout(configured.connectionTimeoutMs),
   };
-}
-
-function normalizeNonEmptyString(value, fallback) {
-  return typeof value === "string" && value.trim() ? value.trim() : fallback;
 }
 
 function normalizeTimeout(value) {

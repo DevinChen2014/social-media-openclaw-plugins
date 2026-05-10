@@ -2,7 +2,7 @@
   "id": "xhs-insights-openclaw-plugin",
   "name": "Xiaohongshu RedNote XHS Insights MCP",
   "description": "Social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "providers": ["xhs-insights"],
   "providerAuthEnvVars": {
     "xhs-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]
@@ -76,17 +76,6 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-      "apiKeyEnv": {
-        "type": "string",
-        "default": "SOCIAL_MEDIA_MCP_API_KEY",
-        "description": "Environment variable that contains the API Key used as a Bearer token."
-      },
-      "endpointUrl": {
-        "type": "string",
-        "format": "uri",
-        "default": "https://mcp.52choujiang.com/xhs/mcp",
-        "description": "Remote streamable-http MCP endpoint URL."
-      },
       "connectionTimeoutMs": {
         "type": "integer",
         "default": 30000,
@@ -97,15 +86,6 @@
     }
   },
   "configUiHints": {
-    "apiKeyEnv": {
-      "label": "API Key environment variable",
-      "help": "Name of the environment variable that stores the Social Media MCP API Key.",
-      "sensitive": false
-    },
-    "endpointUrl": {
-      "label": "Endpoint URL",
-      "help": "Hosted XHS Insights MCP endpoint."
-    },
     "connectionTimeoutMs": {
       "label": "Connection timeout",
       "help": "Timeout in milliseconds for hosted MCP requests.",
@@ -113,15 +93,6 @@
     }
   },
   "uiHints": {
-    "apiKeyEnv": {
-      "label": "API Key environment variable",
-      "help": "Name of the environment variable that stores the Social Media MCP API Key.",
-      "sensitive": false
-    },
-    "endpointUrl": {
-      "label": "Endpoint URL",
-      "help": "Hosted XHS Insights MCP endpoint."
-    },
     "connectionTimeoutMs": {
       "label": "Connection timeout",
       "help": "Timeout in milliseconds for hosted MCP requests.",

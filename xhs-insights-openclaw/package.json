@@ -1,6 +1,6 @@
 {
   "name": "xhs-insights-openclaw-plugin",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
   "main": "index.js",
   "type": "module",
@@ -65,15 +65,6 @@
       ]
     },
     "configUiHints": {
-      "apiKeyEnv": {
-        "label": "API Key environment variable",
-        "help": "Name of the environment variable that stores the Social Media MCP API Key.",
-        "sensitive": false
-      },
-      "endpointUrl": {
-        "label": "Endpoint URL",
-        "help": "Hosted XHS Insights MCP endpoint."
-      },
       "connectionTimeoutMs": {
         "label": "Connection timeout",
         "help": "Timeout in milliseconds for hosted MCP requests.",
