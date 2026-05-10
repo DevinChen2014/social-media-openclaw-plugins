@@ -6,8 +6,8 @@ Public source listings for OpenClaw native plugins that connect to hosted, read-
 
 | ClawHub package | Source path | Version |
 | --- | --- | --- |
-| `xhs-insights-openclaw-plugin` | `xhs-insights-openclaw` | `0.1.9` |
-| `douyin-insights-openclaw-plugin` | `douyin-insights-openclaw` | `0.1.4` |
+| `xhs-insights-openclaw-plugin` | `xhs-insights-openclaw` | `0.1.10` |
+| `douyin-insights-openclaw-plugin` | `douyin-insights-openclaw` | `0.1.5` |
 
 Both plugins require `SOCIAL_MEDIA_MCP_API_KEY` at runtime and forward tool calls to the hosted MCP endpoints documented in each package directory.
 

@@ -8,8 +8,8 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
 - Package name: `douyin-insights-openclaw-plugin`
-- Version: `0.1.4`
-- Search terms: Douyin, 抖音, videos, comments, creator profiles, short video research
+- Version: `0.1.5`
+- Search terms: Douyin, 抖音, social media research, short video research, creator analytics, comments, creator profiles
 
 ## Capabilities
 
@@ -69,7 +69,7 @@ clawhub package publish douyin-insights-openclaw \
   --family code-plugin \
   --name douyin-insights-openclaw-plugin \
   --display-name "Douyin 抖音 Video Insights MCP" \
-  --version 0.1.4 \
+  --version 0.1.5 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
   --source-path douyin-insights-openclaw \

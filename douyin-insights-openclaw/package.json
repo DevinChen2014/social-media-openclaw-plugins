@@ -1,7 +1,7 @@
 {
   "name": "douyin-insights-openclaw-plugin",
-  "version": "0.1.4",
-  "description": "Search Douyin and 抖音 videos; read video details, comments, creator profiles, and creator video lists through a hosted read-only MCP service.",
+  "version": "0.1.5",
+  "description": "Social media research, short video research, and creator analytics for Douyin and 抖音: search videos, analyze comments, read video details, creator profiles, and creator video lists through a hosted read-only MCP service.",
   "main": "index.js",
   "type": "module",
   "license": "MIT",

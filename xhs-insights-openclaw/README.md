@@ -8,8 +8,8 @@ The plugin registers namespaced OpenClaw tools and forwards each call to a remot
 - API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
 - Website: <https://52choujiang.com/assistant>
 - Package name: `xhs-insights-openclaw-plugin`
-- Version: `0.1.9`
-- Search terms: Xiaohongshu, XHS, RedNote, 小红书, comments, creator profiles, social media research
+- Version: `0.1.10`
+- Search terms: Xiaohongshu, XHS, RedNote, 小红书, social media research, marketing research, comments, creator profiles
 
 ## Capabilities
 
@@ -69,7 +69,7 @@ clawhub package publish xhs-insights-openclaw \
   --family code-plugin \
   --name xhs-insights-openclaw-plugin \
   --display-name "Xiaohongshu RedNote XHS Insights MCP" \
-  --version 0.1.9 \
+  --version 0.1.10 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
   --source-path xhs-insights-openclaw \

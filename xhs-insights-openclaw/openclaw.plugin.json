@@ -1,8 +1,8 @@
 {
   "id": "xhs-insights-openclaw-plugin",
   "name": "Xiaohongshu RedNote XHS Insights MCP",
-  "description": "Search Xiaohongshu, XHS, RedNote, and 小红书 notes; read note details, comments, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
-  "version": "0.1.9",
+  "description": "Social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
+  "version": "0.1.10",
   "providers": ["xhs-insights"],
   "providerAuthEnvVars": {
     "xhs-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]

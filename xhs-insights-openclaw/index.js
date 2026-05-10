@@ -1,6 +1,6 @@
 const PLUGIN_ID = "xhs-insights-openclaw-plugin";
 const PLUGIN_NAME = "Xiaohongshu RedNote XHS Insights MCP";
-const PLUGIN_VERSION = "0.1.9";
+const PLUGIN_VERSION = "0.1.10";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/xhs/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;
@@ -400,7 +400,7 @@ function extractTextContent(content) {
 export default {
   id: PLUGIN_ID,
   name: PLUGIN_NAME,
-  description: "Search Xiaohongshu, XHS, RedNote, and 小红书 notes; read note details, comments, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
+  description: "Social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
   configSchema: CONFIG_SCHEMA,
   register,
 };
