@@ -5,10 +5,11 @@ This directory contains an OpenClaw native plugin shim for the hosted XHS Insigh
 The plugin registers namespaced OpenClaw tools and forwards each call to a remote, read-only `streamable-http` MCP endpoint:
 
 - Endpoint: `https://mcp.52choujiang.com/xhs/mcp`
-- API key environment variable: `SOCIAL_MEDIA_MCP_API_KEY`
-- Website: <https://52choujiang.com/assistant>
+- API key environment variable: `SOCIALDATAX_API_KEY`
+- Product: `SocialDataX` / `社媒数据助手`
+- Website: <https://socialdatax.com>
 - Package name: `xhs-insights-openclaw-plugin`
-- Version: `0.1.11`
+- Version: `0.1.12`
 - Search terms: Xiaohongshu, XHS, RedNote, 小红书, social media research, marketing research, comments, creator profiles
 
 ## Capabilities
@@ -30,7 +31,7 @@ This package uses the native OpenClaw plugin path:
 - `openclaw.plugin.json` declares the native plugin manifest and tool contracts.
 - `package.json` declares the OpenClaw extension entry and MCP SDK dependency.
 - `index.js` registers thin forwarding tools that call the hosted MCP service.
-- Runtime metadata declares the required `node` binary, `SOCIAL_MEDIA_MCP_API_KEY`, and the hosted MCP service domain.
+- Runtime metadata declares the required `node` binary, `SOCIALDATAX_API_KEY`, and the hosted MCP service domain.
 
 It intentionally does not include `.codex-plugin/` or `.mcp.json`, because OpenClaw gives `openclaw.plugin.json` native-plugin precedence when both marker types are present.
 
@@ -39,16 +40,16 @@ It intentionally does not include `.codex-plugin/` or `.mcp.json`, because OpenC
 Set the shared API key before using this plugin:
 
 ```bash
-export SOCIAL_MEDIA_MCP_API_KEY="<SOCIAL_MEDIA_MCP_API_KEY>"
+export SOCIALDATAX_API_KEY="<SOCIALDATAX_API_KEY>"
 ```
 
 The key is sent as:
 
 ```text
-Authorization: Bearer ${SOCIAL_MEDIA_MCP_API_KEY}
+Authorization: Bearer ${SOCIALDATAX_API_KEY}
 ```
 
-The plugin always reads this exact environment variable and sends it only to the fixed endpoint `https://mcp.52choujiang.com/xhs/mcp`. It does not read alternate credential environment variables or support overriding the endpoint URL.
+The plugin sends the key only to the fixed endpoint `https://mcp.52choujiang.com/xhs/mcp`. It does not support overriding the endpoint URL.
 
 Do not commit real API keys to code, docs, issues, or screenshots.
 
@@ -71,7 +72,7 @@ clawhub package publish xhs-insights-openclaw \
   --family code-plugin \
   --name xhs-insights-openclaw-plugin \
   --display-name "Xiaohongshu RedNote XHS Insights MCP" \
-  --version 0.1.11 \
+  --version 0.1.12 \
   --source-repo <public-owner/public-repo> \
   --source-commit <public-commit-sha> \
   --source-path xhs-insights-openclaw \

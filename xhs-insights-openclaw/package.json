@@ -1,17 +1,17 @@
 {
   "name": "xhs-insights-openclaw-plugin",
-  "version": "0.1.11",
-  "description": "Social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
+  "version": "0.1.12",
+  "description": "SocialDataX / 社媒数据助手 research workflows for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
   "main": "index.js",
   "type": "module",
   "license": "MIT",
   "author": {
-    "name": "Social Insights Assistant",
-    "url": "https://52choujiang.com/assistant"
+    "name": "SocialDataX",
+    "url": "https://socialdatax.com"
   },
-  "homepage": "https://52choujiang.com/assistant",
+  "homepage": "https://socialdatax.com",
   "engines": {
-    "node": ">=22"
+    "node": ">=20.18.1"
   },
   "keywords": [
     "openclaw-plugin",
@@ -47,9 +47,9 @@
         "node"
       ],
       "env": [
-        "SOCIAL_MEDIA_MCP_API_KEY"
+        "SOCIALDATAX_API_KEY"
       ],
-      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": [
         "https://mcp.52choujiang.com"
       ]
@@ -77,9 +77,9 @@
       "node"
     ],
     "env": [
-      "SOCIAL_MEDIA_MCP_API_KEY"
+      "SOCIALDATAX_API_KEY"
     ],
-    "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+    "primaryEnv": "SOCIALDATAX_API_KEY",
     "networkTargets": [
       "https://mcp.52choujiang.com"
     ]
@@ -89,10 +89,10 @@
       "node"
     ],
     "env": [
-      "SOCIAL_MEDIA_MCP_API_KEY"
+      "SOCIALDATAX_API_KEY"
     ]
   },
-  "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+  "primaryEnv": "SOCIALDATAX_API_KEY",
   "networkTargets": [
     "https://mcp.52choujiang.com"
   ],
@@ -103,10 +103,10 @@
           "node"
         ],
         "env": [
-          "SOCIAL_MEDIA_MCP_API_KEY"
+          "SOCIALDATAX_API_KEY"
         ]
       },
-      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": [
         "https://mcp.52choujiang.com"
       ]

@@ -1,25 +1,25 @@
 {
   "id": "xhs-insights-openclaw-plugin",
   "name": "Xiaohongshu RedNote XHS Insights MCP",
-  "description": "Social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
-  "version": "0.1.11",
+  "description": "SocialDataX / 社媒数据助手 social media research and marketing research for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
+  "version": "0.1.12",
   "providers": ["xhs-insights"],
   "providerAuthEnvVars": {
-    "xhs-insights": ["SOCIAL_MEDIA_MCP_API_KEY"]
+    "xhs-insights": ["SOCIALDATAX_API_KEY"]
   },
   "providerAuthChoices": [
     {
       "provider": "xhs-insights",
       "method": "api-key",
-      "choiceId": "social-media-mcp-api-key",
-      "choiceLabel": "Social Media MCP API Key",
+      "choiceId": "socialdatax-api-key",
+      "choiceLabel": "SocialDataX API Key",
       "choiceHint": "Used only to authorize requests to the hosted XHS Insights MCP service.",
-      "groupId": "social-media-insights",
-      "groupLabel": "Social Media Insights",
-      "optionKey": "socialMediaMcpApiKey",
-      "cliFlag": "--social-media-mcp-api-key",
-      "cliOption": "--social-media-mcp-api-key <key>",
-      "cliDescription": "SOCIAL_MEDIA_MCP_API_KEY used by the hosted MCP service.",
+      "groupId": "socialdatax",
+      "groupLabel": "SocialDataX / 社媒数据助手",
+      "optionKey": "socialDataxApiKey",
+      "cliFlag": "--socialdatax-api-key",
+      "cliOption": "--socialdatax-api-key <key>",
+      "cliDescription": "SOCIALDATAX_API_KEY used by the hosted MCP service.",
       "onboardingScopes": ["social-media-research"],
       "assistantPriority": 0
     }
@@ -30,25 +30,25 @@
   },
   "runtimeRequirements": {
     "bins": ["node"],
-    "env": ["SOCIAL_MEDIA_MCP_API_KEY"],
-    "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+    "env": ["SOCIALDATAX_API_KEY"],
+    "primaryEnv": "SOCIALDATAX_API_KEY",
     "networkTargets": ["https://mcp.52choujiang.com"]
   },
   "metadata": {
     "xhs-insights": {
       "requires": {
         "bins": ["node"],
-        "env": ["SOCIAL_MEDIA_MCP_API_KEY"]
+        "env": ["SOCIALDATAX_API_KEY"]
       },
-      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": ["https://mcp.52choujiang.com"]
     }
   },
   "requires": {
     "bins": ["node"],
-    "env": ["SOCIAL_MEDIA_MCP_API_KEY"]
+    "env": ["SOCIALDATAX_API_KEY"]
   },
-  "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+  "primaryEnv": "SOCIALDATAX_API_KEY",
   "networkTargets": ["https://mcp.52choujiang.com"],
   "environment": {
     "binaries": ["node"],

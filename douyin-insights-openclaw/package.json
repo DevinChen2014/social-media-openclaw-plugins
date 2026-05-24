@@ -1,17 +1,17 @@
 {
   "name": "douyin-insights-openclaw-plugin",
-  "version": "0.1.5",
-  "description": "Social media research, short video research, and creator analytics for Douyin and 抖音: search videos, analyze comments, read video details, creator profiles, and creator video lists through a hosted read-only MCP service.",
+  "version": "0.2.4",
+  "description": "SocialDataX / 社媒数据助手 research workflows for Douyin and 抖音: hot search, search video and image/text works, analyze comments/replies, read work details, creator profiles, creator work lists, and creator short-drama series through a hosted read-only MCP service.",
   "main": "index.js",
   "type": "module",
   "license": "MIT",
   "author": {
-    "name": "Social Insights Assistant",
-    "url": "https://52choujiang.com/assistant"
+    "name": "SocialDataX",
+    "url": "https://socialdatax.com"
   },
-  "homepage": "https://52choujiang.com/assistant",
+  "homepage": "https://socialdatax.com",
   "engines": {
-    "node": ">=22"
+    "node": ">=20.18.1"
   },
   "keywords": [
     "openclaw-plugin",
@@ -21,11 +21,12 @@
     "抖音",
     "social-insights",
     "social-media-research",
-    "short-video",
-    "videos",
+    "content-insights",
+    "image-posts",
     "comments",
     "creator-profiles",
-    "video-research",
+    "creator-series",
+    "work-research",
     "creator-analytics",
     "comment-analysis"
   ],
@@ -46,9 +47,9 @@
         "node"
       ],
       "env": [
-        "SOCIAL_MEDIA_MCP_API_KEY"
+        "SOCIALDATAX_API_KEY"
       ],
-      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": [
         "https://mcp.52choujiang.com"
       ]
@@ -64,15 +65,6 @@
       ]
     },
     "configUiHints": {
-      "apiKeyEnv": {
-        "label": "API Key environment variable",
-        "help": "Name of the environment variable that stores the Social Media MCP API Key.",
-        "sensitive": false
-      },
-      "endpointUrl": {
-        "label": "Endpoint URL",
-        "help": "Hosted Douyin Insights MCP endpoint."
-      },
       "connectionTimeoutMs": {
         "label": "Connection timeout",
         "help": "Timeout in milliseconds for hosted MCP requests.",
@@ -85,9 +77,9 @@
       "node"
     ],
     "env": [
-      "SOCIAL_MEDIA_MCP_API_KEY"
+      "SOCIALDATAX_API_KEY"
     ],
-    "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+    "primaryEnv": "SOCIALDATAX_API_KEY",
     "networkTargets": [
       "https://mcp.52choujiang.com"
     ]
@@ -97,10 +89,10 @@
       "node"
     ],
     "env": [
-      "SOCIAL_MEDIA_MCP_API_KEY"
+      "SOCIALDATAX_API_KEY"
     ]
   },
-  "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+  "primaryEnv": "SOCIALDATAX_API_KEY",
   "networkTargets": [
     "https://mcp.52choujiang.com"
   ],
@@ -111,10 +103,10 @@
           "node"
         ],
         "env": [
-          "SOCIAL_MEDIA_MCP_API_KEY"
+          "SOCIALDATAX_API_KEY"
         ]
       },
-      "primaryEnv": "SOCIAL_MEDIA_MCP_API_KEY",
+      "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": [
         "https://mcp.52choujiang.com"
       ]

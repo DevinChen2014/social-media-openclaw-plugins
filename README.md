@@ -1,15 +1,20 @@
-# Social Media OpenClaw Plugins
+# SocialDataX OpenClaw Plugins
 
-Public source listings for OpenClaw native plugins that connect to hosted, read-only social media insights MCP services.
+Public source listings for SocialDataX / 社媒数据助手 OpenClaw native plugins that connect to hosted, read-only MCP services for social media research workflows.
 
 ## Packages
 
 | ClawHub package | Source path | Version |
 | --- | --- | --- |
-| `xhs-insights-openclaw-plugin` | `xhs-insights-openclaw` | `0.1.10` |
-| `douyin-insights-openclaw-plugin` | `douyin-insights-openclaw` | `0.1.5` |
+| `xhs-insights-openclaw-plugin` | `xhs-insights-openclaw` | `0.1.12` |
+| `douyin-insights-openclaw-plugin` | `douyin-insights-openclaw` | `0.2.4` |
 
-Both plugins require `SOCIAL_MEDIA_MCP_API_KEY` at runtime and forward tool calls to the hosted MCP endpoints documented in each package directory.
+Both plugins require `SOCIALDATAX_API_KEY` at runtime and forward tool calls to the hosted MCP endpoints documented in each package directory.
+
+- Product: `SocialDataX` / `社媒数据助手`
+- Website: <https://socialdatax.com>
+- XHS endpoint: `https://mcp.52choujiang.com/xhs/mcp`
+- Douyin endpoint: `https://mcp.52choujiang.com/douyin/mcp`
 
 ## Scope
 

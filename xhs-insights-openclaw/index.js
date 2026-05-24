@@ -1,8 +1,10 @@
 const PLUGIN_ID = "xhs-insights-openclaw-plugin";
 const PLUGIN_NAME = "Xiaohongshu RedNote XHS Insights MCP";
-const PLUGIN_VERSION = "0.1.11";
+const PLUGIN_VERSION = "0.1.12";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/xhs/mcp";
-const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
+const DEFAULT_API_KEY_ENV = "SOCIALDATAX_API_KEY";
+const LEGACY_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
+const API_KEY_ENV_NAMES = [DEFAULT_API_KEY_ENV, LEGACY_API_KEY_ENV];
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;
 
 const CONFIG_SCHEMA = {
@@ -51,12 +53,12 @@ const TOOL_DEFINITIONS = [
           enum: [
             "general",
             "time_descending",
-            "popularity_descending",
-            "comment_descending",
-            "collect_descending",
+            "like_count_descending",
+            "comment_count_descending",
+            "collect_count_descending",
           ],
           default: "general",
-          description: "Sort order: general, latest, most liked, most commented, or most collected.",
+          description: "Sort order: general (default), time_descending (latest published first), like_count_descending (most liked first), comment_count_descending (most commented first), or collect_count_descending (most collected first).",
         },
         note_type: {
           type: "string",
@@ -271,7 +273,7 @@ function createForwardingTool({ api, context, definition }) {
 
 async function callRemoteMcpTool({ api, remoteName, publicName, args }) {
   const config = resolvePluginConfig(api);
-  const apiKey = process.env[DEFAULT_API_KEY_ENV];
+  const apiKey = readFirstEnv(API_KEY_ENV_NAMES);
   if (!apiKey) {
     throw new Error(`Missing API Key. Set ${DEFAULT_API_KEY_ENV} before using ${PLUGIN_NAME}.`);
   }
@@ -318,6 +320,16 @@ async function loadMcpSdkModules() {
     mcpSdkModules = { Client, StreamableHTTPClientTransport };
   }
   return mcpSdkModules;
+}
+
+function readFirstEnv(names) {
+  for (const name of names) {
+    const value = process.env[name]?.trim();
+    if (value) {
+      return value;
+    }
+  }
+  return undefined;
 }
 
 function resolvePluginConfig(api) {

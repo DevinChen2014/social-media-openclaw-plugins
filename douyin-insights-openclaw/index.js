@@ -1,25 +1,16 @@
 const PLUGIN_ID = "douyin-insights-openclaw-plugin";
-const PLUGIN_NAME = "Douyin 抖音 Video Insights MCP";
-const PLUGIN_VERSION = "0.1.5";
+const PLUGIN_NAME = "Douyin 抖音 Content Insights MCP";
+const PLUGIN_VERSION = "0.2.4";
 const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/douyin/mcp";
-const DEFAULT_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
+const DEFAULT_API_KEY_ENV = "SOCIALDATAX_API_KEY";
+const LEGACY_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
+const API_KEY_ENV_NAMES = [DEFAULT_API_KEY_ENV, LEGACY_API_KEY_ENV];
 const DEFAULT_CONNECTION_TIMEOUT_MS = 30000;
 
 const CONFIG_SCHEMA = {
   type: "object",
   additionalProperties: false,
   properties: {
-    apiKeyEnv: {
-      type: "string",
-      default: DEFAULT_API_KEY_ENV,
-      description: "Environment variable that contains the API Key used as a Bearer token.",
-    },
-    endpointUrl: {
-      type: "string",
-      format: "uri",
-      default: DEFAULT_ENDPOINT_URL,
-      description: "Remote streamable-http MCP endpoint URL.",
-    },
     connectionTimeoutMs: {
       type: "integer",
       default: DEFAULT_CONNECTION_TIMEOUT_MS,
@@ -31,20 +22,28 @@ const CONFIG_SCHEMA = {
 };
 
 const PAGE_TOKEN_PROPERTY = {
-  anyOf: [
-    { type: "string" },
-    { type: "null" },
-  ],
+  type: "string",
   default: "",
-  description: "Pagination token. Leave empty for the first page; pass the previous next_page_token to continue.",
+  description: "Pagination token. Leave empty for the first page; pass the previous non-empty next_page_token to continue. Empty next_page_token means there is no next page. Do not parse, modify, or reuse tokens across pagination chains.",
 };
 
 const TOOL_DEFINITIONS = [
   {
+    name: "douyin-insights__douyin_get_hot_search_list",
+    remoteName: "douyin_get_hot_search_list",
+    label: "Get Douyin Hot Search List",
+    description: "Fetch the current Douyin main hot search list.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {},
+    },
+  },
+  {
     name: "douyin-insights__douyin_search_videos",
     remoteName: "douyin_search_videos",
-    label: "Search Douyin Videos",
-    description: "Search Douyin videos by keyword with optional sort, publish-time, duration, and content-type filters.",
+    label: "Search Douyin Works",
+    description: "Search Douyin works by keyword with optional sort, publish-time, duration, and content-type filters.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -56,36 +55,28 @@ const TOOL_DEFINITIONS = [
         },
         page_token: PAGE_TOKEN_PROPERTY,
         sort_type: {
-          anyOf: [
-            { type: "integer" },
-            { type: "null" },
-          ],
-          default: 0,
-          description: "Sort order: 0 general, 2 latest, 1 most liked.",
+          type: "string",
+          enum: ["general", "time_descending", "like_count_descending"],
+          default: "general",
+          description: "Sort order: general (default), time_descending (latest published first), or like_count_descending (most liked first).",
         },
-        publish_time: {
-          anyOf: [
-            { type: "integer" },
-            { type: "null" },
-          ],
-          default: 0,
-          description: "Publish-time filter: 0 all, 1 within a day, 7 within a week, 180 within half a year.",
+        publish_time_range: {
+          type: "string",
+          enum: ["all", "day", "week", "half_year"],
+          default: "all",
+          description: "Publish-time filter: all, within a day, within a week, or within half a year.",
         },
-        filter_duration: {
-          anyOf: [
-            { type: "string" },
-            { type: "null" },
-          ],
-          default: "0",
-          description: "Video duration filter: 0 all, 0-1 under 1 minute, 1-5 between 1 and 5 minutes, 5-10000 over 5 minutes.",
+        duration_range: {
+          type: "string",
+          enum: ["all", "under_1_minute", "one_to_five_minutes", "over_5_minutes"],
+          default: "all",
+          description: "Video duration filter: all, under 1 minute, between 1 and 5 minutes, or over 5 minutes.",
         },
         content_type: {
-          anyOf: [
-            { type: "integer" },
-            { type: "null" },
-          ],
-          default: 0,
-          description: "Content type filter: 0 all, 1 video, 2 image post.",
+          type: "string",
+          enum: ["all", "video", "image"],
+          default: "all",
+          description: "Content type filter: all, video, or image post.",
         },
       },
     },
@@ -93,8 +84,8 @@ const TOOL_DEFINITIONS = [
   {
     name: "douyin-insights__douyin_get_video_detail_by_aweme_id",
     remoteName: "douyin_get_video_detail_by_aweme_id",
-    label: "Get Douyin Video Detail By ID",
-    description: "Fetch structured video details when the caller already has an aweme ID.",
+    label: "Get Douyin Work Detail By ID",
+    description: "Fetch structured work details when the caller already has an aweme ID.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -110,8 +101,8 @@ const TOOL_DEFINITIONS = [
   {
     name: "douyin-insights__douyin_get_video_detail_by_url",
     remoteName: "douyin_get_video_detail_by_url",
-    label: "Get Douyin Video Detail By URL",
-    description: "Resolve a Douyin video link, short link, or share text into structured video details.",
+    label: "Get Douyin Work Detail By URL",
+    description: "Resolve a Douyin content page link, short link, or share text into structured work details.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -119,7 +110,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         url: {
           type: "string",
-          description: "Douyin video URL, short link, or share text.",
+          description: "Douyin content page URL, short link, or share text; do not pass video.play_url.",
         },
       },
     },
@@ -127,7 +118,7 @@ const TOOL_DEFINITIONS = [
   {
     name: "douyin-insights__douyin_get_video_comments_by_aweme_id",
     remoteName: "douyin_get_video_comments_by_aweme_id",
-    label: "Get Douyin Video Comments By ID",
+    label: "Get Douyin Work Comments By ID",
     description: "Fetch paginated first-level comments when the caller already has an aweme ID.",
     parameters: {
       type: "object",
@@ -145,8 +136,8 @@ const TOOL_DEFINITIONS = [
   {
     name: "douyin-insights__douyin_get_video_comments_by_url",
     remoteName: "douyin_get_video_comments_by_url",
-    label: "Get Douyin Video Comments By URL",
-    description: "Fetch paginated first-level comments from a Douyin video URL, short link, or share text.",
+    label: "Get Douyin Work Comments By URL",
+    description: "Fetch paginated first-level comments from a Douyin content page URL, short link, or share text.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -154,7 +145,29 @@ const TOOL_DEFINITIONS = [
       properties: {
         url: {
           type: "string",
-          description: "Douyin video URL, short link, or share text.",
+          description: "Douyin content page URL, short link, or share text; do not pass video.play_url.",
+        },
+        page_token: PAGE_TOKEN_PROPERTY,
+      },
+    },
+  },
+  {
+    name: "douyin-insights__douyin_get_video_comment_replies_by_comment_id",
+    remoteName: "douyin_get_video_comment_replies_by_comment_id",
+    label: "Get Douyin Comment Replies By Comment ID",
+    description: "Fetch paginated replies under a first-level Douyin comment by aweme ID and comment ID.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      required: ["aweme_id", "comment_id"],
+      properties: {
+        aweme_id: {
+          type: "string",
+          description: "Douyin aweme ID.",
+        },
+        comment_id: {
+          type: "string",
+          description: "First-level comment ID.",
         },
         page_token: PAGE_TOKEN_PROPERTY,
       },
@@ -178,16 +191,16 @@ const TOOL_DEFINITIONS = [
     },
   },
   {
-    name: "douyin-insights__douyin_get_user_info_by_url",
-    remoteName: "douyin_get_user_info_by_url",
-    label: "Get Douyin User Info By URL",
+    name: "douyin-insights__douyin_get_user_info_by_profile_url",
+    remoteName: "douyin_get_user_info_by_profile_url",
+    label: "Get Douyin User Info By Profile URL",
     description: "Resolve a Douyin profile link, short link, or share text into creator profile data.",
     parameters: {
       type: "object",
       additionalProperties: false,
-      required: ["url"],
+      required: ["profile_url"],
       properties: {
-        url: {
+        profile_url: {
           type: "string",
           description: "Douyin profile URL, short link, or share text.",
         },
@@ -197,8 +210,8 @@ const TOOL_DEFINITIONS = [
   {
     name: "douyin-insights__douyin_get_user_posted_videos_by_sec_user_id",
     remoteName: "douyin_get_user_posted_videos_by_sec_user_id",
-    label: "Get Douyin Creator Videos By ID",
-    description: "Fetch a paginated list of videos published by a creator when the caller already has a sec_user_id.",
+    label: "Get Douyin Creator Works By ID",
+    description: "Fetch a paginated list of works published by a creator when the caller already has a sec_user_id.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -213,16 +226,52 @@ const TOOL_DEFINITIONS = [
     },
   },
   {
-    name: "douyin-insights__douyin_get_user_posted_videos_by_url",
-    remoteName: "douyin_get_user_posted_videos_by_url",
-    label: "Get Douyin Creator Videos By URL",
-    description: "Fetch a paginated list of videos published by a creator from a profile link, short link, or share text.",
+    name: "douyin-insights__douyin_get_user_posted_videos_by_profile_url",
+    remoteName: "douyin_get_user_posted_videos_by_profile_url",
+    label: "Get Douyin Creator Works By Profile URL",
+    description: "Fetch a paginated list of works published by a creator from a profile link, short link, or share text.",
     parameters: {
       type: "object",
       additionalProperties: false,
-      required: ["url"],
+      required: ["profile_url"],
       properties: {
-        url: {
+        profile_url: {
+          type: "string",
+          description: "Douyin profile URL, short link, or share text.",
+        },
+        page_token: PAGE_TOKEN_PROPERTY,
+      },
+    },
+  },
+  {
+    name: "douyin-insights__douyin_get_user_series_by_sec_user_id",
+    remoteName: "douyin_get_user_series_by_sec_user_id",
+    label: "Get Douyin Creator Series By ID",
+    description: "Fetch a paginated list of short-drama series published by a creator when the caller already has a sec_user_id.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      required: ["sec_user_id"],
+      properties: {
+        sec_user_id: {
+          type: "string",
+          description: "Douyin sec_user_id.",
+        },
+        page_token: PAGE_TOKEN_PROPERTY,
+      },
+    },
+  },
+  {
+    name: "douyin-insights__douyin_get_user_series_by_profile_url",
+    remoteName: "douyin_get_user_series_by_profile_url",
+    label: "Get Douyin Creator Series By Profile URL",
+    description: "Fetch a paginated list of short-drama series published by a creator from a profile link, short link, or share text.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      required: ["profile_url"],
+      properties: {
+        profile_url: {
           type: "string",
           description: "Douyin profile URL, short link, or share text.",
         },
@@ -266,9 +315,9 @@ function createForwardingTool({ api, context, definition }) {
 
 async function callRemoteMcpTool({ api, remoteName, publicName, args }) {
   const config = resolvePluginConfig(api);
-  const apiKey = process.env[config.apiKeyEnv];
+  const apiKey = readFirstEnv(API_KEY_ENV_NAMES);
   if (!apiKey) {
-    throw new Error(`Missing API Key. Set ${config.apiKeyEnv} before using ${PLUGIN_NAME}.`);
+    throw new Error(`Missing API Key. Set ${DEFAULT_API_KEY_ENV} before using ${PLUGIN_NAME}.`);
   }
 
   const { Client, StreamableHTTPClientTransport } = await loadMcpSdkModules();
@@ -285,7 +334,7 @@ async function callRemoteMcpTool({ api, remoteName, publicName, args }) {
   if (signal) {
     requestInit.signal = signal;
   }
-  const transport = new StreamableHTTPClientTransport(new URL(config.endpointUrl), {
+  const transport = new StreamableHTTPClientTransport(new URL(DEFAULT_ENDPOINT_URL), {
     requestInit,
   });
 
@@ -315,6 +364,16 @@ async function loadMcpSdkModules() {
   return mcpSdkModules;
 }
 
+function readFirstEnv(names) {
+  for (const name of names) {
+    const value = process.env[name]?.trim();
+    if (value) {
+      return value;
+    }
+  }
+  return undefined;
+}
+
 function resolvePluginConfig(api) {
   const liveConfig = api.runtime?.config?.current?.();
   const configured =
@@ -322,14 +381,8 @@ function resolvePluginConfig(api) {
     api.pluginConfig ??
     {};
   return {
-    apiKeyEnv: normalizeNonEmptyString(configured.apiKeyEnv, DEFAULT_API_KEY_ENV),
-    endpointUrl: normalizeNonEmptyString(configured.endpointUrl, DEFAULT_ENDPOINT_URL),
     connectionTimeoutMs: normalizeTimeout(configured.connectionTimeoutMs),
   };
-}
-
-function normalizeNonEmptyString(value, fallback) {
-  return typeof value === "string" && value.trim() ? value.trim() : fallback;
 }
 
 function normalizeTimeout(value) {
@@ -384,7 +437,7 @@ function extractTextContent(content) {
 export default {
   id: PLUGIN_ID,
   name: PLUGIN_NAME,
-  description: "Social media research, short video research, and creator analytics for Douyin and 抖音: search videos, analyze comments, read video details, creator profiles, and creator video lists through a hosted read-only MCP service.",
+  description: "Social media research, Douyin content insights, and creator analytics for Douyin and 抖音: hot search, search video and image/text works, analyze comments/replies, read work details, creator profiles, creator work lists, and creator short-drama series through a hosted read-only MCP service.",
   configSchema: CONFIG_SCHEMA,
   register,
 };
