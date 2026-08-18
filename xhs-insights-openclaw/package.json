@@ -1,7 +1,7 @@
 {
   "name": "xhs-insights-openclaw-plugin",
-  "version": "0.1.12",
-  "description": "SocialDataX / 社媒数据助手 research workflows for Xiaohongshu, XHS, RedNote, and 小红书: search notes, analyze comments, read note details, replies, creator profiles, and creator posts through a hosted read-only MCP service.",
+  "version": "0.1.22",
+  "description": "SocialDataX / 社媒数据助手 为小红书 / Xiaohongshu / XHS / RedNote 提供社媒研究支持：搜索热榜、笔记搜索、商品搜索、商品详情、商品评价、标签页笔记、评论分析、笔记详情、评论回复、博主信息和博主笔记。",
   "main": "index.js",
   "type": "module",
   "license": "MIT",
@@ -21,6 +21,10 @@
     "小红书",
     "xhs",
     "rednote",
+    "hot-search",
+    "product-search",
+    "product-details",
+    "product-reviews",
     "social-insights",
     "social-media-research",
     "notes",
@@ -51,7 +55,7 @@
       ],
       "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": [
-        "https://mcp.52choujiang.com"
+        "https://mcp.socialdatax.com"
       ]
     },
     "environment": {
@@ -60,7 +64,7 @@
       ],
       "externalServices": [
         {
-          "name": "mcp.52choujiang.com"
+          "name": "mcp.socialdatax.com"
         }
       ]
     },
@@ -81,7 +85,7 @@
     ],
     "primaryEnv": "SOCIALDATAX_API_KEY",
     "networkTargets": [
-      "https://mcp.52choujiang.com"
+      "https://mcp.socialdatax.com"
     ]
   },
   "requires": {
@@ -94,7 +98,7 @@
   },
   "primaryEnv": "SOCIALDATAX_API_KEY",
   "networkTargets": [
-    "https://mcp.52choujiang.com"
+    "https://mcp.socialdatax.com"
   ],
   "metadata": {
     "xhs-insights": {
@@ -108,7 +112,7 @@
       },
       "primaryEnv": "SOCIALDATAX_API_KEY",
       "networkTargets": [
-        "https://mcp.52choujiang.com"
+        "https://mcp.socialdatax.com"
       ]
     }
   },

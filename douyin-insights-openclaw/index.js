@@ -1,7 +1,7 @@
 const PLUGIN_ID = "douyin-insights-openclaw-plugin";
-const PLUGIN_NAME = "Douyin 抖音 Content Insights MCP";
-const PLUGIN_VERSION = "0.2.4";
-const DEFAULT_ENDPOINT_URL = "https://mcp.52choujiang.com/douyin/mcp";
+const PLUGIN_NAME = "社媒数据助手 抖音 MCP | Douyin MCP";
+const PLUGIN_VERSION = "0.2.8";
+const DEFAULT_ENDPOINT_URL = "https://mcp.socialdatax.com/douyin/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIALDATAX_API_KEY";
 const LEGACY_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
 const API_KEY_ENV_NAMES = [DEFAULT_API_KEY_ENV, LEGACY_API_KEY_ENV];
@@ -24,7 +24,7 @@ const CONFIG_SCHEMA = {
 const PAGE_TOKEN_PROPERTY = {
   type: "string",
   default: "",
-  description: "Pagination token. Leave empty for the first page; pass the previous non-empty next_page_token to continue. Empty next_page_token means there is no next page. Do not parse, modify, or reuse tokens across pagination chains.",
+  description: "Opaque pagination token. Leave empty for the first page; pass the complete returned next_page_token back unchanged. Do not modify, truncate, redact, mask, omit, normalize, rebuild, generate, or replace the middle with ellipses.",
 };
 
 const TOOL_DEFINITIONS = [
@@ -155,7 +155,7 @@ const TOOL_DEFINITIONS = [
     name: "douyin-insights__douyin_get_video_comment_replies_by_comment_id",
     remoteName: "douyin_get_video_comment_replies_by_comment_id",
     label: "Get Douyin Comment Replies By Comment ID",
-    description: "Fetch paginated replies under a first-level Douyin comment by aweme ID and comment ID.",
+    description: "Fetch paginated replies under a first-level Douyin comment; pass both aweme ID and comment ID, and use page_token to continue pagination.",
     parameters: {
       type: "object",
       additionalProperties: false,
