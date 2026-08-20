@@ -63,6 +63,10 @@ const TOPIC_NOTES_PAGE_TOKEN_PROPERTY = {
   description: "Opaque tag page note list pagination token. Leave empty for the first page; pass the complete returned next_page_token back unchanged. Use only with the same tag page and sort_type. Do not modify, truncate, redact, mask, omit, normalize, rebuild, generate, or replace the middle with ellipses.",
 };
 
+const NOTE_ID_PROPERTY_DESCRIPTION = "XHS note ID. Copy the complete note_id from note search, note detail, comments, tag page note, or creator note results. Do not truncate, shorten, redact, reformat, rebuild, or pass only a prefix.";
+const USER_ID_PROPERTY_DESCRIPTION = "XHS user_id. Copy user_id or author.user_id from note search, product review, note detail, tag page note, creator profile, or creator note results. If only a profile link is available, use the profile URL tool. Do not pass an account number, display name, or profile name.";
+const PROFILE_URL_PROPERTY_DESCRIPTION = "XHS profile link, supported XHS short link, or share text containing one. Do not pass a note link.";
+
 const TOOL_DEFINITIONS = [
   {
     name: "xhs-insights__xhs_get_search_hot_list",
@@ -87,7 +91,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         keyword: {
           type: "string",
-          description: "XHS search keyword.",
+          description: "Search term or phrase, such as a brand, topic, person, product, or content need. Do not pass a note link, profile link, note_id, user_id, or page_token.",
         },
         page_token: NOTE_SEARCH_PAGE_TOKEN_PROPERTY,
         sort_type: {
@@ -121,7 +125,7 @@ const TOOL_DEFINITIONS = [
     name: "xhs-insights__xhs_search_products",
     remoteName: "xhs_search_products",
     label: "Search XHS Products",
-    description: "Search Xiaohongshu products by keyword with page_token continuation. To continue product search pagination, pass the full returned next_page_token back unchanged as page_token; do not truncate, summarize, mask, or replace the middle with ellipses.",
+    description: "Search Xiaohongshu products by product name, brand, category, or product-related query, with page_token continuation. Use this tool for search terms; if a sku_id from search results is already available, use the corresponding product detail or product review tool instead. Do not use product links, sku_id, spu_id, or page_token as the keyword. To continue product search pagination, pass the full returned next_page_token back unchanged as page_token; do not truncate, summarize, mask, or replace the middle with ellipses.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -129,7 +133,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         keyword: {
           type: "string",
-          description: "XHS product search keyword.",
+          description: "Search term such as a product name, brand, category, or product-related query. Do not pass a product link, sku_id, spu_id, or page_token.",
         },
         page_token: PRODUCT_SEARCH_PAGE_TOKEN_PROPERTY,
       },
@@ -210,7 +214,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         note_id: {
           type: "string",
-          description: "XHS note ID.",
+          description: NOTE_ID_PROPERTY_DESCRIPTION,
         },
       },
     },
@@ -227,7 +231,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         note_id: {
           type: "string",
-          description: "XHS note ID.",
+          description: NOTE_ID_PROPERTY_DESCRIPTION,
         },
         page_token: COMMENT_PAGE_TOKEN_PROPERTY,
         sort_type: {
@@ -275,7 +279,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         note_id: {
           type: "string",
-          description: "XHS note ID.",
+          description: NOTE_ID_PROPERTY_DESCRIPTION,
         },
         comment_id: {
           type: "string",
@@ -297,7 +301,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         user_id: {
           type: "string",
-          description: "XHS user ID.",
+          description: USER_ID_PROPERTY_DESCRIPTION,
         },
       },
     },
@@ -314,7 +318,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         profile_url: {
           type: "string",
-          description: "XHS profile URL, supported XHS short link, or share text.",
+          description: PROFILE_URL_PROPERTY_DESCRIPTION,
         },
       },
     },
@@ -331,7 +335,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         user_id: {
           type: "string",
-          description: "XHS user ID.",
+          description: USER_ID_PROPERTY_DESCRIPTION,
         },
         page_token: USER_POSTED_PAGE_TOKEN_PROPERTY,
       },
@@ -349,7 +353,7 @@ const TOOL_DEFINITIONS = [
       properties: {
         profile_url: {
           type: "string",
-          description: "XHS profile URL, supported XHS short link, or share text.",
+          description: PROFILE_URL_PROPERTY_DESCRIPTION,
         },
         page_token: USER_POSTED_PAGE_TOKEN_PROPERTY,
       },

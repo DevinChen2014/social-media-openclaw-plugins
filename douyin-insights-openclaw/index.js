@@ -1,6 +1,6 @@
 const PLUGIN_ID = "douyin-insights-openclaw-plugin";
 const PLUGIN_NAME = "社媒数据助手 抖音 MCP | Douyin MCP";
-const PLUGIN_VERSION = "0.2.8";
+const PLUGIN_VERSION = "0.2.9";
 const DEFAULT_ENDPOINT_URL = "https://mcp.socialdatax.com/douyin/mcp";
 const DEFAULT_API_KEY_ENV = "SOCIALDATAX_API_KEY";
 const LEGACY_API_KEY_ENV = "SOCIAL_MEDIA_MCP_API_KEY";
@@ -77,6 +77,36 @@ const TOOL_DEFINITIONS = [
           enum: ["all", "video", "image"],
           default: "all",
           description: "Content type filter: all, video, or image post.",
+        },
+      },
+    },
+  },
+  {
+    name: "douyin-insights__douyin_search_users",
+    remoteName: "douyin_search_users",
+    label: "Search Douyin Creators",
+    description: "Search Douyin creators/accounts by keyword with optional paging and filters.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      required: ["keyword"],
+      properties: {
+        keyword: {
+          type: "string",
+          description: "Douyin creator/account search keyword.",
+        },
+        page_token: PAGE_TOKEN_PROPERTY,
+        follower_count_range: {
+          type: "string",
+          enum: ["all", "under_1k", "1k_to_10k", "10k_to_100k", "100k_to_1m", "over_1m"],
+          default: "all",
+          description: "Follower-count filter: all, under 1k, 1k-10k, 10k-100k, 100k-1m, or over 1m.",
+        },
+        user_type: {
+          type: "string",
+          enum: ["all", "regular_user", "enterprise_verified", "individual_verified"],
+          default: "all",
+          description: "Creator type filter: all, regular user, enterprise verified, or individual verified.",
         },
       },
     },
@@ -186,6 +216,23 @@ const TOOL_DEFINITIONS = [
         sec_user_id: {
           type: "string",
           description: "Douyin sec_user_id.",
+        },
+      },
+    },
+  },
+  {
+    name: "douyin-insights__douyin_get_user_info_by_douyin_id",
+    remoteName: "douyin_get_user_info_by_douyin_id",
+    label: "Get Douyin User Info By Douyin ID",
+    description: "Fetch creator profile data when the caller has the public Douyin account ID / douyin_id.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      required: ["douyin_id"],
+      properties: {
+        douyin_id: {
+          type: "string",
+          description: "Public Douyin account ID / douyin_id, not a nickname, search keyword, sec_user_id, or profile URL.",
         },
       },
     },
@@ -437,7 +484,7 @@ function extractTextContent(content) {
 export default {
   id: PLUGIN_ID,
   name: PLUGIN_NAME,
-  description: "Social media research, Douyin content insights, and creator analytics for Douyin and 抖音: hot search, search video and image/text works, analyze comments/replies, read work details, creator profiles, creator work lists, and creator short-drama series through a hosted read-only MCP service.",
+  description: "Social media research, Douyin content insights, and creator analytics for Douyin and 抖音: hot search, search video and image/text works and creators, analyze comments/replies, read work details, creator profiles, creator work lists, and creator short-drama series through a hosted read-only MCP service.",
   configSchema: CONFIG_SCHEMA,
   register,
 };

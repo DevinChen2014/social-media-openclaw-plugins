@@ -1,8 +1,8 @@
 {
   "id": "douyin-insights-openclaw-plugin",
   "name": "社媒数据助手 抖音 MCP | Douyin MCP",
-  "description": "SocialDataX / 社媒数据助手 为抖音 / Douyin 提供社媒研究支持：热榜、作品搜索、作品详情、评论回复、达人信息、达人作品和短剧/合集。",
-  "version": "0.2.8",
+  "description": "SocialDataX / 社媒数据助手 为抖音 / Douyin 提供社媒研究支持：热榜、作品搜索、达人搜索、作品详情、评论回复、达人信息、达人作品和短剧/合集。",
+  "version": "0.2.9",
   "providers": ["douyin-insights"],
   "providerAuthEnvVars": {
     "douyin-insights": ["SOCIALDATAX_API_KEY"]
@@ -62,12 +62,14 @@
     "tools": [
       "douyin-insights__douyin_get_hot_search_list",
       "douyin-insights__douyin_search_videos",
+      "douyin-insights__douyin_search_users",
       "douyin-insights__douyin_get_video_detail_by_aweme_id",
       "douyin-insights__douyin_get_video_detail_by_url",
       "douyin-insights__douyin_get_video_comments_by_aweme_id",
       "douyin-insights__douyin_get_video_comments_by_url",
       "douyin-insights__douyin_get_video_comment_replies_by_comment_id",
       "douyin-insights__douyin_get_user_info_by_sec_user_id",
+      "douyin-insights__douyin_get_user_info_by_douyin_id",
       "douyin-insights__douyin_get_user_info_by_profile_url",
       "douyin-insights__douyin_get_user_posted_videos_by_sec_user_id",
       "douyin-insights__douyin_get_user_posted_videos_by_profile_url",
