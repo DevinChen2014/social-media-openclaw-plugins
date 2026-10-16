@@ -6,7 +6,7 @@ Public source listings for SocialDataX / 社媒数据助手 OpenClaw native plug
 
 | ClawHub package | Source path | Version |
 | --- | --- | --- |
-| `xhs-insights-openclaw-plugin` | `xhs-insights-openclaw` | `0.1.25` (source; publication pending) |
+| `xhs-insights-openclaw-plugin` | `xhs-insights-openclaw` | `0.1.25` |
 | `douyin-insights-openclaw-plugin` | `douyin-insights-openclaw` | `0.2.9` |
 
 Both plugins require `SOCIALDATAX_API_KEY` at runtime and forward tool calls to the hosted MCP endpoints documented in each package directory.
@@ -19,3 +19,5 @@ Both plugins require `SOCIALDATAX_API_KEY` at runtime and forward tool calls to 
 ## Scope
 
 These plugins provide read-only research workflows. They do not provide account login, posting, editing, liking, commenting, or other account actions.
+
+XHS `0.1.25` was verified as the ClawHub latest release with clean package, static and LLM scans on 2026-10-16. The package README documents the existing legacy API Key fallback and its precedence; the runtime behavior is unchanged.
